@@ -60,7 +60,7 @@ fn part2(input: &str) -> usize {
         .sum()
 }
 
-fn calibration_value_for_line(line: &str, matchers: &Vec<(&str, usize)>) -> usize {
+fn calibration_value_for_line(line: &str, matchers: &[(&str, usize)]) -> usize {
     // Find the first instance of each matcher in the line, then reduce to the one with the lowest index
     let first = matchers
         .iter()
