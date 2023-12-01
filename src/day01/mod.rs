@@ -3,11 +3,17 @@ use crate::parse_file_input;
 pub fn run() {
     let input = parse_file_input(1);
     println!("Running Day 1");
-    part1(&input);
-    part2(&input);
+    println!(
+        "Part 1 :: What is the sum of all of the calibration values? --> {:?}",
+        part1(&input)
+    );
+    println!(
+        "Part 2 :: What is the sum of all of the calibration values? --> {:?}",
+        part2(&input)
+    );
 }
 
-fn part1(input: &str) {
+fn part1(input: &str) -> usize {
     let matchers: Vec<(&str, usize)> = vec![
         ("1", 1),
         ("2", 2),
@@ -20,17 +26,13 @@ fn part1(input: &str) {
         ("9", 9),
     ];
 
-    let calibration_values_sum: usize = input
+    input
         .split("\r\n")
         .map(|l| calibration_value_for_line(l, &matchers))
-        .sum();
-
-    println!(
-        "Part 1 :: What is the sum of all of the calibration values? --> {calibration_values_sum}"
-    );
+        .sum()
 }
 
-fn part2(input: &str) {
+fn part2(input: &str) -> usize {
     let matchers: Vec<(&str, usize)> = vec![
         ("1", 1),
         ("one", 1),
@@ -52,14 +54,10 @@ fn part2(input: &str) {
         ("nine", 9),
     ];
 
-    let calibration_values_sum: usize = input
+    input
         .split("\r\n")
         .map(|l| calibration_value_for_line(l, &matchers))
-        .sum();
-
-    println!(
-        "Part 1 :: What is the sum of all of the calibration values? --> {calibration_values_sum}"
-    );
+        .sum()
 }
 
 fn calibration_value_for_line(line: &str, matchers: &Vec<(&str, usize)>) -> usize {
@@ -81,4 +79,58 @@ fn calibration_value_for_line(line: &str, matchers: &Vec<(&str, usize)>) -> usiz
 
     // Combine the first and last to make one two-digit number
     10 * first + last
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::day01::{part1, part2};
+
+    #[test]
+    fn test_part1_sample_input() {
+        assert_eq!(
+            part1(
+                "1abc2\r\n
+        pqr3stu8vwx\r\n
+        a1b2c3d4e5f\r\n
+        treb7uchet"
+            ),
+            142
+        );
+    }
+
+    #[test]
+    fn test_part2_sample_input() {
+        assert_eq!(
+            part2(
+                "two1nine\r\n
+        eightwothree\r\n
+        abcone2threexyz\r\n
+        xtwone3four\r\n
+        4nineeightseven2\r\n
+        zoneight234\r\n
+        7pqrstsixteen"
+            ),
+            281
+        );
+    }
+
+    #[test]
+    fn test_part2_overlapping_strings() {
+        assert_eq!(
+            part2(
+                "eighthree\r\n
+                sevenine\r\n
+                oneight"
+            ),
+            83 + 79 + 18
+        );
+        assert_eq!(
+            part2(
+                "eighthree\r\n
+                sevenine4\r\n
+                4oneight"
+            ),
+            83 + 74 + 48
+        );
+    }
 }
