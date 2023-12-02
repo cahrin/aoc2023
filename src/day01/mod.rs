@@ -27,7 +27,7 @@ fn part1(input: &str) -> usize {
     ];
 
     input
-        .split("\r\n")
+        .lines()
         .map(|l| calibration_value_for_line(l, &matchers))
         .sum()
 }
@@ -55,7 +55,7 @@ fn part2(input: &str) -> usize {
     ];
 
     input
-        .split("\r\n")
+        .lines()
         .map(|l| calibration_value_for_line(l, &matchers))
         .sum()
 }
@@ -89,9 +89,9 @@ mod tests {
     fn test_part1_sample_input() {
         assert_eq!(
             part1(
-                "1abc2\r\n
-        pqr3stu8vwx\r\n
-        a1b2c3d4e5f\r\n
+                "1abc2
+        pqr3stu8vwx
+        a1b2c3d4e5f
         treb7uchet"
             ),
             142
@@ -102,12 +102,12 @@ mod tests {
     fn test_part2_sample_input() {
         assert_eq!(
             part2(
-                "two1nine\r\n
-        eightwothree\r\n
-        abcone2threexyz\r\n
-        xtwone3four\r\n
-        4nineeightseven2\r\n
-        zoneight234\r\n
+                "two1nine
+        eightwothree
+        abcone2threexyz
+        xtwone3four
+        4nineeightseven2
+        zoneight234
         7pqrstsixteen"
             ),
             281
@@ -118,16 +118,16 @@ mod tests {
     fn test_part2_overlapping_strings() {
         assert_eq!(
             part2(
-                "eighthree\r\n
-                sevenine\r\n
+                "eighthree
+                sevenine
                 oneight"
             ),
             83 + 79 + 18
         );
         assert_eq!(
             part2(
-                "eighthree\r\n
-                sevenine4\r\n
+                "eighthree
+                sevenine4
                 4oneight"
             ),
             83 + 74 + 48

@@ -59,7 +59,7 @@ fn is_game_possible(threshold_game: &Game, game_to_test: &Game) -> bool {
 }
 
 fn input_to_games(input: &str) -> Vec<Game> {
-    input.split("\r\n").map(line_to_game).collect()
+    input.lines().map(line_to_game).collect()
 }
 
 fn line_to_game(line: &str) -> Game {
@@ -105,10 +105,10 @@ mod tests {
     fn test_part1_sample_input() {
         assert_eq!(
             part1(
-                "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green\r\n
-            Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue\r\n
-            Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red\r\n
-            Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red\r\n
+                "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
+            Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue
+            Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red
+            Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red
             Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green"
             ),
             8
@@ -119,10 +119,10 @@ mod tests {
     fn test_part2_sample_input() {
         assert_eq!(
             part2(
-                "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green\r\n
-            Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue\r\n
-            Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red\r\n
-            Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red\r\n
+                "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
+            Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue
+            Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red
+            Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red
             Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green"
             ),
             2286
