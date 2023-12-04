@@ -31,8 +31,9 @@ fn part2(input: &str) -> usize {
     // counts based on the number of winning matches. Do that step once for every version
     // of the card, tracked by `card_counts`.
     for (i, card) in cards.iter().enumerate() {
+        let card_num_matches = card.winning_number_matches().len();
         for _ in 0..card_counts[i] {
-            for j in 1..=card.winning_number_matches().len() {
+            for j in 1..=card_num_matches {
                 card_counts[i + j] += 1;
             }
         }
