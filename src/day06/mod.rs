@@ -51,24 +51,27 @@ impl Race {
     // also winners, so longest - shortest + 1 is the number of ways to win
     // (+1 because the range is inclusive). This runs in ~100ms, ~12x faster.
     fn num_ways_to_win_efficient(&self) -> usize {
-        let mut min = 0;
+        let mut min: Option<usize> = None;
         for t in 1..self.time {
             if t * (self.time - t) > self.current_record {
-                min = t;
+                min = Some(t);
                 break;
             }
         }
-        if min == 0 {
+        if min.is_none() {
             return 0; // No ways to win
         }
-        let mut max = self.time;
-        for t in (min..=self.time).rev() {
+        let mut max: Option<usize> = None;
+        for t in (min.unwrap()..=self.time).rev() {
             if t * (self.time - t) > self.current_record {
-                max = t;
+                max = Some(t);
                 break;
             }
         }
-        max - min + 1
+        if max.is_none() {
+            return 1; // Only min is a winner
+        }
+        max.unwrap() - min.unwrap() + 1
     }
 }
 
