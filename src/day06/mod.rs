@@ -17,7 +17,7 @@ fn part1(input: &str) -> usize {
     // Get the number of ways to win for each race and take the product of all results
     input_to_races(input)
         .iter()
-        .map(|r| r.num_ways_to_win())
+        .map(Race::num_ways_to_win)
         .product()
 }
 
