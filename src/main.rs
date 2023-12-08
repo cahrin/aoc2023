@@ -5,6 +5,7 @@ use aoc2023::day04;
 use aoc2023::day05;
 use aoc2023::day06;
 use aoc2023::day07;
+use aoc2023::day08;
 
 fn main() {
     let day = std::env::args().nth(1).unwrap_or_default();
@@ -16,9 +17,10 @@ fn main() {
         "5" => day05::run(),
         "6" => day06::run(),
         "7" => day07::run(),
+        "8" => day08::run(),
         _ => {
             println!("No match for day argument '{day}' found. Running most recent day.");
-            day07::run();
+            day08::run();
         }
     }
 }
